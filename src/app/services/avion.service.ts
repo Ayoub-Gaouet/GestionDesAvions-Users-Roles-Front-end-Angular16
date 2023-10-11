@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { Avion } from '../model/avion.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { apiURL } from '../config';
+import {apiURL, apiURLUser} from '../config';
 import {AuthService} from "./auth.service";
 import {Image} from "../model/image.model";
+import {User} from "../model/user.model";
+import {Role} from "../model/role.model";
 
 const httpOptions = {
   headers: new HttpHeaders( {'Content-Type': 'application/json'} )
@@ -81,5 +83,34 @@ export class AvionService {
     const url = `${apiURL + '/image/get/info'}/${id}`;
     return this.http.get<Image>(url);
   }
+  listeUser(): Observable<User[]> {
+    return this.http.get<User[]>(apiURLUser + "/all");
+  }
+  saveUser(user: User): Observable<User> {
+    return this.http.post<User>(apiURLUser + "/add", user);
+  }
+  supprimerUser(id: number) {
+    const url = `${apiURLUser + "/deleteuser"}/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+  getUserById(id: number) {
+    return this.http.get<User>(apiURLUser + '/user/' + id);
+  }
+  getAllRoles() {
+    return this.http.get<Role[]>(apiURLUser + '/allRoles');
+  }
+  getRoleById(id: number) {
+    return this.http.get<Role>(apiURLUser + '/role/' + id);
+  }
+  addRoleToUser(id: number, role: Role) {
+    const url = `${apiURLUser}/addRole/${id}`;
+    return this.http.post(url, role);
+  }
+
+  removeRoleFromUser(id: number, role: Role) {
+    const url = `${apiURLUser }/removeRole/${id}`;
+    return this.http.post(url, role);
+  }
+
 
 }

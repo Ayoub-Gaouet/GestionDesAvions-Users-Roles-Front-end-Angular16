@@ -12,6 +12,9 @@ import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import {TokenInterceptor} from "./services/token.interceptor";
+import { UsersComponent } from './users/users.component';
+import { AddUsersComponent } from './add-users/add-users.component';
+import { AddRoleToUserComponent } from './add-role-to-user/add-role-to-user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import {TokenInterceptor} from "./services/token.interceptor";
     RechercheParCompanyComponent,
     RechercheParNomComponent,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    UsersComponent,
+    AddUsersComponent,
+    AddRoleToUserComponent,
   ],
   imports: [
     BrowserModule,
